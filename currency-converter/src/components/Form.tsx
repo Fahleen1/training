@@ -1,9 +1,9 @@
-import { IoIosSwap } from "react-icons/io";
-import { useState } from "react";
+import { useState } from 'react';
+import { IoIosSwap } from 'react-icons/io';
 
 export default function Form() {
-  const [fromCurrency, setFromCurrency] = useState<string>("eur");
-  const [toCurrency, setToCurrency] = useState<string>("usd");
+  const [fromCurrency, setFromCurrency] = useState<string>('eur');
+  const [toCurrency, setToCurrency] = useState<string>('usd');
 
   const [amount, setAmount] = useState(0);
 

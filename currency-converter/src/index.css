@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.containerr{
+.containerr {
   position: relative;
   top: 6rem;
 }
 
-.swap-icon{
+.swap-icon {
   cursor: pointer;
 }
-.swap-icon:hover{
+.swap-icon:hover {
   background-color: gainsboro;
   border-radius: 50%;
 }
