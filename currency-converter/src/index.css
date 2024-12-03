@@ -2,16 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.containerr {
-  position: relative;
-  top: 6rem;
-}
-
 .swap-icon {
   cursor: pointer;
 }
 .swap-icon:hover {
-  background-color: gainsboro;
+  background-color: #f3f4f6;
   border-radius: 50%;
 }
 
@@ -19,11 +14,11 @@ input::placeholder {
   color: #6b7280;
 }
 
-.select-icon {
-  width: 1rem;
-}
-
 label,
 .amount {
   color: #09090b;
+}
+
+.form {
+  width: 480px;
 }
