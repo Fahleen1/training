@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IoIosSwap } from 'react-icons/io';
 
-import Dropdown from './Dropdown';
+import Dropdown, { IDropdownOptions } from './Dropdown';
 
 const currencies = [
   { value: 'eur', label: 'EUR' },
@@ -11,22 +11,16 @@ const currencies = [
 ];
 
 export default function Form() {
-  const [fromCurrency, setFromCurrency] = useState<string>('eur');
-  const [toCurrency, setToCurrency] = useState<string>('usd');
+  const [fromCurrency, setFromCurrency] = useState<IDropdownOptions>(
+    currencies[0],
+  );
+  const [toCurrency, setToCurrency] = useState<IDropdownOptions>(currencies[0]);
 
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<number>();
 
   const handleAmountInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
     setAmount(value);
-  };
-
-  const handleToCurrency = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setToCurrency(event.target.value);
-  };
-
-  const handleFromCurrency = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFromCurrency(event.target.value);
   };
 
   return (
@@ -41,13 +35,19 @@ export default function Form() {
             className="w-full border mt-2 rounded-md px-4 text-sm py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2
             placeholder:custom-gray"
             placeholder="Enter amount"
+            value={amount}
             onChange={handleAmountInput}
           />
         </div>
 
         <div className="flex justify-between items-center gap-3">
           {/* From Dropdown */}
-          <Dropdown label="From" options={currencies} />
+          <Dropdown
+            label="From"
+            options={currencies}
+            onChange={(o) => setFromCurrency(o)}
+            value={fromCurrency}
+          />
 
           {/* Swap Icon */}
           <div className="relative top-3 p-2 cursor-pointer hover:bg-[#f3f4f6] hover:rounded-full">
@@ -55,7 +55,12 @@ export default function Form() {
           </div>
 
           {/* To Dropdown */}
-          <Dropdown label="To" options={currencies} />
+          <Dropdown
+            label="To"
+            options={currencies}
+            onChange={(o) => setToCurrency(o)}
+            value={toCurrency}
+          />
         </div>
 
         <div>
