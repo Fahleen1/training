@@ -3,7 +3,7 @@ import MainHeading from './components/MainHeading';
 
 function App() {
   return (
-    <div>
+    <div className="h-screen flex flex-col items-center  gap-8 justify-center">
       <MainHeading name="Currency Converter" />
       <Form />
     </div>

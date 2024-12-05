@@ -1,3 +1,6 @@
-export default function MainHeading({ name }: { name: string }) {
-  return <h1 className="text-3xl text-center font-bold">{name}</h1>;
+interface IMainHeading {
+  name: string;
+}
+export default function MainHeading({ name }: IMainHeading) {
+  return <h1 className="text-4xl px-2 text-center font-bold">{name}</h1>;
 }
