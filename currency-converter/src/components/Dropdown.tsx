@@ -2,16 +2,10 @@ import Select, { StylesConfig } from 'react-select';
 
 interface IDropdown {
   label: string;
+  options: { value: string }[];
 }
 
-export default function Dropdown({ label }: IDropdown) {
-  const currencies = [
-    { value: 'eur', label: 'EUR' },
-    { value: 'usd', label: 'USD' },
-    { value: 'gbp', label: 'GBP' },
-    { value: 'jpy', label: 'JPY' },
-  ];
-
+export default function Dropdown({ label, options }: IDropdown) {
   const customStyles: StylesConfig = {
     control: (base, state) => ({
       ...base,
@@ -59,7 +53,7 @@ export default function Dropdown({ label }: IDropdown) {
         {label}
       </label>
       <Select
-        options={currencies}
+        options={options}
         className="react-select"
         classNamePrefix="react-select"
         placeholder="Select currency"

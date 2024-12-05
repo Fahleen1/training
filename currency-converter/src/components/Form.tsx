@@ -3,6 +3,13 @@ import { IoIosSwap } from 'react-icons/io';
 import Dropdown from './Dropdown';
 
 export default function Form() {
+  const currencies = [
+    { value: 'eur', label: 'EUR' },
+    { value: 'usd', label: 'USD' },
+    { value: 'gbp', label: 'GBP' },
+    { value: 'jpy', label: 'JPY' },
+  ];
+
   return (
     <div className="w-[480px] px-4 flex flex-col">
       <form className="border p-6 flex flex-col gap-4 shadow-sm rounded-lg bg-white">
@@ -20,7 +27,7 @@ export default function Form() {
 
         <div className="flex justify-between items-center gap-3">
           {/* From Dropdown */}
-          <Dropdown label="From" />
+          <Dropdown label="From" options={currencies} />
 
           {/* Swap Icon */}
           <div className="relative top-3 p-2 cursor-pointer hover:bg-[#f3f4f6] hover:rounded-full">
@@ -28,7 +35,7 @@ export default function Form() {
           </div>
 
           {/* To Dropdown */}
-          <Dropdown label="To" />
+          <Dropdown label="To" options={currencies} />
         </div>
 
         <div>
