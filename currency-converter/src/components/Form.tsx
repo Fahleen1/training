@@ -2,14 +2,14 @@ import { IoIosSwap } from 'react-icons/io';
 
 import Dropdown from './Dropdown';
 
-export default function Form() {
-  const currencies = [
-    { value: 'eur', label: 'EUR' },
-    { value: 'usd', label: 'USD' },
-    { value: 'gbp', label: 'GBP' },
-    { value: 'jpy', label: 'JPY' },
-  ];
+const currencies = [
+  { value: 'eur', label: 'EUR' },
+  { value: 'usd', label: 'USD' },
+  { value: 'gbp', label: 'GBP' },
+  { value: 'jpy', label: 'JPY' },
+];
 
+export default function Form() {
   return (
     <div className="w-[480px] px-4 flex flex-col">
       <form className="border p-6 flex flex-col gap-4 shadow-sm rounded-lg bg-white">
