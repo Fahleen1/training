@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import { IoIosSwap } from 'react-icons/io';
 
+import Dropdown from './Dropdown';
+
+const currencies = [
+  { value: 'eur', label: 'EUR' },
+  { value: 'usd', label: 'USD' },
+  { value: 'gbp', label: 'GBP' },
+  { value: 'jpy', label: 'JPY' },
+];
+
 export default function Form() {
   const [fromCurrency, setFromCurrency] = useState<string>('eur');
   const [toCurrency, setToCurrency] = useState<string>('usd');
@@ -21,56 +30,38 @@ export default function Form() {
   };
 
   return (
-    <div className="w-full max-w-md px-4 mt-4">
-      <form className="border p-6 shadow rounded-lg bg-white">
-        <div className="mb-4">
-          <label className="block text-base text-gray-700 mb-1">Amount</label>
+    <div className="w-[480px] px-4 flex flex-col">
+      <form className="border p-6 flex flex-col gap-4 shadow-sm rounded-lg bg-white">
+        <div>
+          <label className="block text-sm font-medium mb-1 custom-black">
+            Amount
+          </label>
           <input
             type="number"
-            className="w-full border rounded px-3 py-2 focus:ring-blue-500"
+            className="w-full border mt-2 rounded-md px-4 text-sm py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2
+            placeholder:custom-gray"
             placeholder="Enter amount"
             onChange={handleAmountInput}
           />
         </div>
 
-        <div className="flex gap-4 mb-4">
-          <div className="flex-1">
-            <label className="block text-base text-gray-700 mb-1">From</label>
-            <select
-              className="w-full border rounded-md px-3 py-2 focus:ring-blue-500"
-              value={fromCurrency}
-              onChange={handleFromCurrency}
-            >
-              <option value="eur">EUR</option>
-              <option value="usd">USD</option>
-              <option value="gbp">GBP</option>
-              <option value="jpy">JPY</option>
-            </select>
+        <div className="flex justify-between items-center gap-3">
+          {/* From Dropdown */}
+          <Dropdown label="From" options={currencies} />
+
+          {/* Swap Icon */}
+          <div className="relative top-3 p-2 cursor-pointer hover:bg-[#f3f4f6] hover:rounded-full">
+            <IoIosSwap className="text-3xl font-bold" />
           </div>
 
-          <div className="mt-7 p-3 swap-icon">
-            <IoIosSwap />
-          </div>
-
-          <div className="flex-1">
-            <label className="block text-base text-gray-700 mb-1">To</label>
-            <select
-              className="w-full border rounded-md px-3 py-2 focus:ring-blue-500"
-              value={toCurrency}
-              onChange={handleToCurrency}
-            >
-              <option value="eur">EUR</option>
-              <option value="usd">USD</option>
-              <option value="gbp">GBP</option>
-              <option value="jpy">JPY</option>
-            </select>
-          </div>
+          {/* To Dropdown */}
+          <Dropdown label="To" options={currencies} />
         </div>
 
-        <div className="mt-4">
-          <h3 className="text-gray-700 text-sm">Converted Amount</h3>
-          <h2 className="text-2xl font-semibold">{amount}</h2>
-          <h3 className="text-gray-400 text-sm mt-2">1 USD = 0.0000 EUR</h3>
+        <div>
+          <h3 className="custom-black font-medium text-sm">Converted Amount</h3>
+          <h2 className="text-2xl font-semibold mt-2">0.00</h2>
+          <h3 className="text-sm mt-4 custom-gray">1 USD = 0.0000 EUR</h3>
         </div>
       </form>
     </div>
