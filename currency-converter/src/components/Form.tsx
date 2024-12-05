@@ -31,7 +31,7 @@ export default function Form() {
           <Dropdown label="To" />
         </div>
 
-        <div className="mt-4">
+        <div>
           <h3 className="custom-black font-medium text-sm">Converted Amount</h3>
           <h2 className="text-2xl font-semibold mt-2">0.00</h2>
           <h3 className="text-sm mt-4 custom-gray">1 USD = 0.0000 EUR</h3>

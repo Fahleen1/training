@@ -1,10 +1,10 @@
 import Select, { StylesConfig } from 'react-select';
 
-interface DropdownLabel {
+interface IDropdown {
   label: string;
 }
 
-export default function Dropdown({ label }: DropdownLabel) {
+export default function Dropdown({ label }: IDropdown) {
   const currencies = [
     { value: 'eur', label: 'EUR' },
     { value: 'usd', label: 'USD' },
