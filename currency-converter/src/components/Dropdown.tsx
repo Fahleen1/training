@@ -1,8 +1,11 @@
-import Select, { StylesConfig } from 'react-select';
+import { IDropdownOption } from '../types';
+import Select, { OnChangeValue, StylesConfig } from 'react-select';
 
 interface IDropdown {
   label: string;
-  options: { value: string }[];
+  options: IDropdownOption[];
+  value: IDropdownOption;
+  onChange: (selectedOption: IDropdownOption) => void;
 }
 
 const customStyles: StylesConfig = {
@@ -47,7 +50,13 @@ const customStyles: StylesConfig = {
   }),
 };
 
-export default function Dropdown({ label, options }: IDropdown) {
+export default function Dropdown({ label, options, onChange }: IDropdown) {
+  const handleChange = (selectedOption: OnChangeValue<unknown, boolean>) => {
+    if (selectedOption) {
+      onChange(selectedOption as IDropdownOption);
+    }
+  };
+
   return (
     <div className="w-[290px]">
       <label className="block custom-black text-sm font-medium mb-1">
@@ -60,6 +69,7 @@ export default function Dropdown({ label, options }: IDropdown) {
         placeholder="Select currency"
         isSearchable={false}
         styles={customStyles}
+        onChange={handleChange}
       />
     </div>
   );
