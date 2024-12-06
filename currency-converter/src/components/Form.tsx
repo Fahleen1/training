@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { IoIosSwap } from 'react-icons/io';
 
-import Dropdown, { IDropdownOptions } from './Dropdown';
+import Dropdown, { IDropdownOption } from './Dropdown';
 
-const currencies = [
+type CurrencyOption = {
+  value: string;
+  label: string;
+};
+
+const currencies: CurrencyOption[] = [
   { value: 'eur', label: 'EUR' },
   { value: 'usd', label: 'USD' },
   { value: 'gbp', label: 'GBP' },
@@ -11,16 +16,16 @@ const currencies = [
 ];
 
 export default function Form() {
-  const [fromCurrency, setFromCurrency] = useState<IDropdownOptions>(
+  const [fromCurrency, setFromCurrency] = useState<IDropdownOption>(
     currencies[0],
   );
-  const [toCurrency, setToCurrency] = useState<IDropdownOptions>(currencies[0]);
+  const [toCurrency, setToCurrency] = useState<IDropdownOption>(currencies[0]);
 
   const [amount, setAmount] = useState<number>();
 
   const handleAmountInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(event.target.value);
-    setAmount(value);
+    const value = event.target.value;
+    setAmount(value === '' ? undefined : Number(value));
   };
 
   return (

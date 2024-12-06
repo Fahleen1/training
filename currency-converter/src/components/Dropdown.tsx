@@ -1,19 +1,14 @@
-import Select, {
-  ActionMeta,
-  OnChangeValue,
-  SingleValue,
-  StylesConfig,
-} from 'react-select';
+import Select, { OnChangeValue, StylesConfig } from 'react-select';
 
-export interface IDropdownOptions {
+export interface IDropdownOption {
   label: string;
   value: string;
 }
 interface IDropdown {
   label: string;
-  options: IDropdownOptions[];
-  value: IDropdownOptions;
-  onChange: (selectedOption: IDropdownOptions) => void;
+  options: IDropdownOption[];
+  value: IDropdownOption;
+  onChange: (selectedOption: IDropdownOption) => void;
 }
 
 const customStyles: StylesConfig = {
@@ -61,7 +56,7 @@ const customStyles: StylesConfig = {
 export default function Dropdown({ label, options, onChange }: IDropdown) {
   const handleChange = (selectedOption: OnChangeValue<unknown, boolean>) => {
     if (selectedOption) {
-      onChange(selectedOption as IDropdownOptions);
+      onChange(selectedOption as IDropdownOption);
     }
   };
 
