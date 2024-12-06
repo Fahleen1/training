@@ -1,9 +1,6 @@
+import { IDropdownOption } from '../types';
 import Select, { OnChangeValue, StylesConfig } from 'react-select';
 
-export interface IDropdownOption {
-  label: string;
-  value: string;
-}
 interface IDropdown {
   label: string;
   options: IDropdownOption[];

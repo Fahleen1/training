@@ -1,14 +1,10 @@
+import { IDropdownOption } from '../types';
 import { useState } from 'react';
 import { IoIosSwap } from 'react-icons/io';
 
-import Dropdown, { IDropdownOption } from './Dropdown';
+import Dropdown from './Dropdown';
 
-type CurrencyOption = {
-  value: string;
-  label: string;
-};
-
-const currencies: CurrencyOption[] = [
+const currencies: IDropdownOption[] = [
   { value: 'eur', label: 'EUR' },
   { value: 'usd', label: 'USD' },
   { value: 'gbp', label: 'GBP' },
