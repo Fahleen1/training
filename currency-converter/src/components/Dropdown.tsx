@@ -4,8 +4,8 @@ import Select, { OnChangeValue, StylesConfig } from 'react-select';
 interface IDropdown {
   label: string;
   options: IDropdownOption[];
-  value: IDropdownOption;
-  onChange: (selectedOption: IDropdownOption) => void;
+  value: IDropdownOption | null;
+  onChange: (selectedOption: IDropdownOption | null) => void;
 }
 
 const customStyles: StylesConfig = {
@@ -50,7 +50,12 @@ const customStyles: StylesConfig = {
   }),
 };
 
-export default function Dropdown({ label, options, onChange }: IDropdown) {
+export default function Dropdown({
+  label,
+  options,
+  value,
+  onChange,
+}: IDropdown) {
   const handleChange = (selectedOption: OnChangeValue<unknown, boolean>) => {
     if (selectedOption) {
       onChange(selectedOption as IDropdownOption);
@@ -70,6 +75,7 @@ export default function Dropdown({ label, options, onChange }: IDropdown) {
         isSearchable={false}
         styles={customStyles}
         onChange={handleChange}
+        value={value}
       />
     </div>
   );

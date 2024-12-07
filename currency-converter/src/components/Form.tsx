@@ -1,5 +1,6 @@
 import { IDropdownOption } from '../types';
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { IoIosSwap } from 'react-icons/io';
 
 import Dropdown from './Dropdown';
@@ -11,18 +12,37 @@ const currencies: IDropdownOption[] = [
   { value: 'jpy', label: 'JPY' },
 ];
 
-export default function Form() {
-  const [fromCurrency, setFromCurrency] = useState<IDropdownOption>(
-    currencies[0],
-  );
-  const [toCurrency, setToCurrency] = useState<IDropdownOption>(currencies[0]);
+const API_KEY = '8f5815d1afcbb47e082e675f';
+const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`;
 
-  const [amount, setAmount] = useState<number>();
+export default function Form() {
+  const [fromCurrency, setFromCurrency] = useState<IDropdownOption | null>(
+    null,
+  );
+  const [toCurrency, setToCurrency] = useState<IDropdownOption | null>(null);
+  const [amount, setAmount] = useState<number>(0);
 
   const handleAmountInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setAmount(value === '' ? undefined : Number(value));
+
+    setAmount(value === '' ? 0 : Number(value));
   };
+
+  useEffect(() => {
+    const fetchExchangeRates = async () => {
+      try {
+        const response = await axios.get(API_URL);
+        const data = response.data;
+
+        //Verifying if rates are getting or not
+        console.log(data.conversion_rates);
+      } catch (error) {
+        console.error('Error fetching exchange rates', error);
+      }
+    };
+
+    fetchExchangeRates();
+  }, []);
 
   return (
     <div className="w-[480px] px-4 flex flex-col">
@@ -36,7 +56,7 @@ export default function Form() {
             className="w-full border mt-2 rounded-md px-4 text-sm py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2
             placeholder:custom-gray"
             placeholder="Enter amount"
-            value={amount}
+            value={amount === 0 ? '' : amount}
             onChange={handleAmountInput}
           />
         </div>
