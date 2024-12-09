@@ -1,6 +1,7 @@
 import { IDropdownOption } from '../types';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { IoIosSwap } from 'react-icons/io';
 
 import Dropdown from './Dropdown';
@@ -12,7 +13,7 @@ const currencies: IDropdownOption[] = [
   { value: 'jpy', label: 'JPY' },
 ];
 
-const API_KEY = '8f5815d1afcbb47e082e675f';
+const API_KEY = import.meta.env.APP_EXCHANGE_RATE_API;
 const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`;
 
 export default function Form() {
@@ -21,36 +22,35 @@ export default function Form() {
   );
   const [toCurrency, setToCurrency] = useState<IDropdownOption | null>(null);
   const [amount, setAmount] = useState<number>(0);
-  const [rate, setRate] = useState('');
-  const [currencyRate, setCurrencyRate] = useState();
 
   const handleAmountInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setAmount(value === '' ? 0 : Number(value));
   };
 
-  useEffect(() => {
-    const fetchExchangeRates = async () => {
-      try {
-        if (fromCurrency && toCurrency) {
-          const response = await axios.get(API_URL);
-          const data = response.data;
+  const { data, error, isError } = useQuery({
+    queryKey: ['exchangeRates', toCurrency, fromCurrency],
+    queryFn: async () => {
+      const response: any = await axios.get(API_URL);
+      return response.data.conversion_rates;
+    },
+    enabled: Boolean(fromCurrency && toCurrency && amount),
+  });
 
-          const fromRate =
-            data.conversion_rates[fromCurrency.value.toUpperCase()];
-          const toRate = data.conversion_rates[toCurrency.value.toUpperCase()];
-          setCurrencyRate(toRate);
+  const currencyRate = useMemo(() => {
+    if (toCurrency && data) {
+      const toRate = data[toCurrency.value.toUpperCase()];
+      return toRate;
+    }
+  }, [data, toCurrency]);
 
-          const calculatedRate = (amount / fromRate) * toRate;
-          setRate(calculatedRate.toFixed(2));
-        }
-      } catch (error) {
-        console.error('Error fetching exchange rates', error);
-      }
-    };
-
-    fetchExchangeRates();
-  }, [toCurrency, fromCurrency, amount]);
+  const rate = useMemo(() => {
+    if (fromCurrency && data && currencyRate) {
+      const fromRate = data[fromCurrency.value.toUpperCase()];
+      const calculatedRate = (amount / fromRate) * currencyRate;
+      return calculatedRate.toFixed(2);
+    }
+  }, [fromCurrency, currencyRate]);
 
   return (
     <div className="w-[480px] px-4 flex flex-col">
@@ -61,8 +61,7 @@ export default function Form() {
           </label>
           <input
             type="number"
-            className="w-full border mt-2 rounded-md px-4 text-sm py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2
-            placeholder:custom-gray"
+            className="w-full border mt-2 rounded-md px-4 text-sm py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 placeholder:custom-gray"
             placeholder="Enter amount"
             value={amount === 0 ? '' : amount}
             onChange={handleAmountInput}
@@ -105,6 +104,7 @@ export default function Form() {
           )}
         </div>
       </form>
+      {isError && <p>Error fetching rates: {error.message}</p>}
     </div>
   );
 }
