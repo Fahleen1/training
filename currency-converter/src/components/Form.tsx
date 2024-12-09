@@ -21,28 +21,36 @@ export default function Form() {
   );
   const [toCurrency, setToCurrency] = useState<IDropdownOption | null>(null);
   const [amount, setAmount] = useState<number>(0);
+  const [rate, setRate] = useState('');
+  const [currencyRate, setCurrencyRate] = useState();
 
   const handleAmountInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-
     setAmount(value === '' ? 0 : Number(value));
   };
 
   useEffect(() => {
     const fetchExchangeRates = async () => {
       try {
-        const response = await axios.get(API_URL);
-        const data = response.data;
+        if (fromCurrency && toCurrency) {
+          const response = await axios.get(API_URL);
+          const data = response.data;
 
-        //Verifying if rates are getting or not
-        console.log(data.conversion_rates);
+          const fromRate =
+            data.conversion_rates[fromCurrency.value.toUpperCase()];
+          const toRate = data.conversion_rates[toCurrency.value.toUpperCase()];
+          setCurrencyRate(toRate);
+
+          const calculatedRate = (amount / fromRate) * toRate;
+          setRate(calculatedRate.toFixed(2));
+        }
       } catch (error) {
         console.error('Error fetching exchange rates', error);
       }
     };
 
     fetchExchangeRates();
-  }, []);
+  }, [toCurrency, fromCurrency, amount]);
 
   return (
     <div className="w-[480px] px-4 flex flex-col">
@@ -86,8 +94,15 @@ export default function Form() {
 
         <div>
           <h3 className="custom-black font-medium text-sm">Converted Amount</h3>
-          <h2 className="text-2xl font-semibold mt-2">0.00</h2>
-          <h3 className="text-sm mt-4 custom-gray">1 USD = 0.0000 EUR</h3>
+          <h2 className="text-2xl font-semibold mt-2">{rate || '0.00'}</h2>
+
+          {fromCurrency && toCurrency && (
+            <h3 className="text-sm mt-4 custom-gray">
+              {fromCurrency.value === toCurrency.value
+                ? `1 ${fromCurrency.value.toUpperCase()} = 1 ${toCurrency.value.toUpperCase()}`
+                : `1 ${fromCurrency.value.toUpperCase()} = ${currencyRate} ${toCurrency.value.toUpperCase()}`}
+            </h3>
+          )}
         </div>
       </form>
     </div>
