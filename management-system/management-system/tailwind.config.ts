@@ -10,6 +10,7 @@ export default {
     extend: {
       colors: {
         'color-black': '#3f3f46',
+        'color-gray': '#3f3f46b2',
       },
     },
   },
