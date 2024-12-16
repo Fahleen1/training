@@ -14,7 +14,7 @@ export default function Sidebar() {
     <div className="flex bg-[#f9fafb] flex-col max-w-[255px] p-2 w-full gap-4 h-screen">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col">
-          <h2 className="text-xl font-extrabold px-5 py-3">
+          <h2 className="text-xl text-color-black font-extrabold px-5 py-3">
             Management System
           </h2>
         </div>
@@ -32,7 +32,7 @@ export default function Sidebar() {
               <LuUsers
                 className={`text-base ${
                   pathname === '/employees'
-                    ? 'font-bold text-black'
+                    ? 'font-bold text-color-black'
                     : 'text-gray-600'
                 }`}
               />
@@ -41,9 +41,9 @@ export default function Sidebar() {
                   href="/employees"
                   className={`${
                     pathname === '/employees'
-                      ? 'font-semibold'
+                      ? 'text-color-black font-semibold'
                       : 'text-gray-800 font-medium'
-                  } hover:text-black`}
+                  } hover:text-color-black`}
                 >
                   Employees
                 </Link>
@@ -57,7 +57,7 @@ export default function Sidebar() {
               <LuBriefcase
                 className={`text-base ${
                   pathname === '/projects'
-                    ? 'font-bold text-black'
+                    ? 'font-bold text-color-black'
                     : 'text-gray-600'
                 }`}
               />
@@ -66,9 +66,9 @@ export default function Sidebar() {
                   href="/projects"
                   className={`${
                     pathname === '/projects'
-                      ? 'font-semibold'
+                      ? 'text-color-black font-semibold'
                       : 'text-gray-800 font-medium'
-                  } hover:text-black`}
+                  } hover:text-color-black`}
                 >
                   Projects
                 </Link>
@@ -84,7 +84,7 @@ export default function Sidebar() {
               <MdAdd
                 className={`text-lg ${
                   pathname === '/employees/add'
-                    ? 'font-bold text-black'
+                    ? 'font-bold text-color-black'
                     : 'text-gray-600'
                 }`}
               />
@@ -93,9 +93,9 @@ export default function Sidebar() {
                   href="/employees/add"
                   className={`${
                     pathname === '/employees/add'
-                      ? 'font-semibold'
+                      ? 'text-color-black font-semibold'
                       : 'text-gray-800 font-medium'
-                  } hover:text-black`}
+                  } hover:text-color-black`}
                 >
                   Add Employee
                 </Link>
@@ -111,7 +111,7 @@ export default function Sidebar() {
               <MdAdd
                 className={`text-lg ${
                   pathname === '/projects/add'
-                    ? 'font-bold text-black'
+                    ? 'font-bold text-color-black'
                     : 'text-gray-600'
                 }`}
               />
@@ -120,9 +120,9 @@ export default function Sidebar() {
                   href="/projects/add"
                   className={`${
                     pathname === '/projects/add'
-                      ? 'font-semibold'
+                      ? 'text-color-black font-semibold'
                       : 'text-gray-800 font-medium'
-                  } hover:text-black`}
+                  } hover:text-color-black`}
                 >
                   Add Project
                 </Link>

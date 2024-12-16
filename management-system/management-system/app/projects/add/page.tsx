@@ -15,7 +15,7 @@ export default function Add() {
           <div className="flex flex-col">
             <label
               htmlFor="name"
-              className="text-sm/6 font-medium text-gray-900"
+              className="text-sm/6 font-medium text-color-black"
             >
               Project Name
             </label>

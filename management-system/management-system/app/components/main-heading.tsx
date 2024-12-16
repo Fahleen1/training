@@ -7,7 +7,7 @@ interface MainHeading {
 export default function MainHeading({ name }: MainHeading) {
   return (
     <div className="flex justify-start">
-      <h1 className="text-2xl font-extrabold">{name}</h1>
+      <h1 className="text-2xl text-color-black font-extrabold">{name}</h1>
     </div>
   );
 }
