@@ -36,10 +36,10 @@ export default function ProjectSelect() {
             </span>
           </span>
 
-          <IoIosArrowDown className="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4" />
+          <IoIosArrowDown className="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-400 sm:size-4" />
         </ListboxButton>
 
-        <ListboxOptions className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
+        <ListboxOptions className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white p-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
           {status.map((s) => (
             <ListboxOption
               key={s.id}

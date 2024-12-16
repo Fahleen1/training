@@ -1,4 +1,5 @@
 import MainHeading from '../components/main-heading';
+import Link from 'next/link';
 import React from 'react';
 
 import Button from '@/app/components/button';
@@ -11,7 +12,9 @@ export default function Employees() {
       <div className="flex flex-col gap-5 p-4 ">
         <MainHeading name="Employees" />
         <div className="flex items-center">
-          <Button name="Add New Employee" />
+          <Link href="/employees/add">
+            <Button name="Add New Employee" />
+          </Link>
         </div>
         <div className="flex items-center">
           <EmployeeTable />

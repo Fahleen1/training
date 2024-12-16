@@ -8,7 +8,7 @@ import MainHeading from '@/app/components/main-heading';
 
 export default function Add() {
   return (
-    <div className="flex flex-col p-3 gap-5">
+    <div className="flex flex-col p-6 gap-5">
       <MainHeading name="Add New Project" />
       <div className="flex ">
         <form className="w-full space-y-4">
