@@ -28,7 +28,7 @@ export default function EmployeeSelect() {
     <Listbox value={selected} onChange={setSelected}>
       <Label className=" text-sm/6 font-medium text-color-black">Project</Label>
       <div className="relative">
-        <ListboxButton className="grid w-full cursor-default grid-cols-1 rounded-md bg-white px-3 py-2 text-left text-gray-900 border border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2">
+        <ListboxButton className="grid w-full cursor-pointer grid-cols-1 rounded-md bg-white px-3 py-2 text-left text-gray-900 border border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2">
           <span className="col-start-1 row-start-1 flex items-center gap-3">
             <span className="block text-color-black font-medium text-sm">
               {selected ? selected.name : 'Select a Project'}

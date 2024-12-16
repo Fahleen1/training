@@ -41,9 +41,9 @@ export default function Sidebar() {
                   href="/employees"
                   className={`${
                     pathname === '/employees'
-                      ? 'text-color-black font-semibold'
-                      : 'text-gray-800 font-medium'
-                  } hover:text-color-black`}
+                      ? 'text-gray-800 font-semibold'
+                      : 'text-color-black font-medium'
+                  } hover:text-gray-950`}
                 >
                   Employees
                 </Link>
@@ -66,9 +66,9 @@ export default function Sidebar() {
                   href="/projects"
                   className={`${
                     pathname === '/projects'
-                      ? 'text-color-black font-semibold'
-                      : 'text-gray-800 font-medium'
-                  } hover:text-color-black`}
+                      ? 'text-gray-800 font-semibold'
+                      : 'text-color-black font-medium'
+                  } hover:text-gray-950`}
                 >
                   Projects
                 </Link>
@@ -93,9 +93,9 @@ export default function Sidebar() {
                   href="/employees/add"
                   className={`${
                     pathname === '/employees/add'
-                      ? 'text-color-black font-semibold'
-                      : 'text-gray-800 font-medium'
-                  } hover:text-color-black`}
+                      ? 'text-gray-800 font-semibold'
+                      : 'text-color-black font-medium'
+                  } hover:text-gray-950`}
                 >
                   Add Employee
                 </Link>
@@ -120,9 +120,9 @@ export default function Sidebar() {
                   href="/projects/add"
                   className={`${
                     pathname === '/projects/add'
-                      ? 'text-color-black font-semibold'
-                      : 'text-gray-800 font-medium'
-                  } hover:text-color-black`}
+                      ? 'text-gray-800 font-semibold'
+                      : 'text-color-black font-medium'
+                  } hover:text-gray-950`}
                 >
                   Add Project
                 </Link>
