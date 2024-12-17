@@ -1,6 +1,7 @@
 import MainHeading from '../components/main-heading';
 import Table from '../components/table';
-import { projectColumns, projects } from '../constants';
+import { projectColumns } from '../constants';
+import { projects } from '../data';
 import Link from 'next/link';
 
 import Button from '@/app/components/button';

@@ -24,9 +24,9 @@ export default function Sidebar() {
           </div>
           <ul className="flex flex-col">
             <li
-              className={`flex items-center cursor-pointer gap-4 text-sm p-2 rounded ${
-                pathname === '/employees' ? 'bg-gray-100' : 'hover:bg-gray-100'
-              }`}
+              className={`flex items-center cursor-pointer gap-4 text-sm p-2 rounded hover:bg-gray-100 ${
+                pathname === '/employees' ? 'bg-gray-100' : ''
+              } `}
             >
               <LuUsers
                 className={`text-base ${
@@ -49,8 +49,8 @@ export default function Sidebar() {
               </span>
             </li>
             <li
-              className={`flex items-center cursor-pointer gap-4 text-sm p-2 rounded ${
-                pathname === '/projects' ? 'bg-gray-100' : 'hover:bg-gray-100'
+              className={`flex items-center cursor-pointer gap-4 text-sm p-2 rounded hover:bg-gray-100 ${
+                pathname === '/projects' ? 'bg-gray-100' : ''
               }`}
             >
               <LuBriefcase
@@ -74,10 +74,8 @@ export default function Sidebar() {
               </span>
             </li>
             <li
-              className={`flex items-center cursor-pointer gap-3 text-sm p-2 rounded ${
-                pathname === '/employees/add'
-                  ? 'bg-gray-100'
-                  : 'hover:bg-gray-100'
+              className={`flex items-center cursor-pointer gap-3 text-sm p-2 rounded hover:bg-gray-100 ${
+                pathname === '/employees/add' ? 'bg-gray-100' : ''
               }`}
             >
               <MdAdd
@@ -101,10 +99,8 @@ export default function Sidebar() {
               </span>
             </li>
             <li
-              className={`flex items-center cursor-pointer gap-3 text-sm p-2 rounded ${
-                pathname === '/projects/add'
-                  ? 'bg-gray-100'
-                  : 'hover:bg-gray-100'
+              className={`flex items-center cursor-pointer gap-3 text-sm p-2 rounded hover:bg-gray-100 ${
+                pathname === '/projects/add' ? 'bg-gray-100' : ''
               }`}
             >
               <MdAdd

@@ -5,20 +5,16 @@ import { useState } from 'react';
 import Button from '@/app/components/button';
 import CustomSelect from '@/app/components/custom-select';
 import MainHeading from '@/app/components/main-heading';
+import { NameProps } from '@/app/interface/interface';
 
-type Status = {
-  id: number;
-  name: string;
-};
-
-const status: Status[] = [
+const status: NameProps[] = [
   { id: 1, name: 'Not Started' },
   { id: 2, name: 'In Progress' },
   { id: 3, name: 'Completed' },
 ];
 
 export default function Add() {
-  const [selectedStat, setSelectedStat] = useState<Status | null>(null);
+  const [selectedStat, setSelectedStat] = useState<NameProps | null>(null);
   return (
     <div className="flex flex-col p-6 gap-5">
       <MainHeading name="Add New Project" />

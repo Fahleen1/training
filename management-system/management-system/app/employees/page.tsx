@@ -1,6 +1,7 @@
 import MainHeading from '../components/main-heading';
 import Table from '../components/table';
-import { employeeColumns, employees } from '../constants';
+import { employeeColumns } from '../constants';
+import { employees } from '../data';
 import Link from 'next/link';
 
 import Button from '@/app/components/button';

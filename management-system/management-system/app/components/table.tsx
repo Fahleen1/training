@@ -1,12 +1,12 @@
 'use client';
 
-import { Column } from '../interface/column';
+import { IColumn } from '../interface/interface';
 
 import ButtonGroup from '@/app/components/button-group';
 
 type TableProps<T> = {
   data: T[];
-  columns: Column<T>[];
+  columns: IColumn<T>[];
 };
 
 export default function Table<T>({ data, columns }: TableProps<T>) {
