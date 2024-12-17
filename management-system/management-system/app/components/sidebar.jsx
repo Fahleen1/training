@@ -23,105 +23,100 @@ export default function Sidebar() {
             Menu
           </div>
           <ul className="flex flex-col">
-            <li
-              className={`flex items-center cursor-pointer gap-4 text-sm p-2 rounded hover:bg-gray-100 ${
-                pathname === '/employees' ? 'bg-gray-100' : ''
-              } `}
-            >
-              <LuUsers
-                className={`text-base ${
-                  pathname === '/employees'
-                    ? 'font-bold text-color-black'
-                    : 'text-gray-600'
+            <li>
+              <Link
+                href="/employees"
+                className={`group flex items-center gap-4 text-sm p-2 rounded w-full cursor-pointer hover:bg-gray-100 ${
+                  pathname === '/employees' ? 'bg-gray-100' : ''
                 }`}
-              />
-              <span>
-                <Link
-                  href="/employees"
-                  className={`${
+              >
+                <LuUsers
+                  className={`text-base text-gray-600 group-hover:text-gray-800 ${
+                    pathname === '/employees' ? ' text-gray-800' : ' '
+                  }`}
+                />
+                <span
+                  className={`text-color-black font-medium group-hover:text-gray-800 ${
                     pathname === '/employees'
                       ? 'text-gray-800 font-semibold'
-                      : 'text-color-black font-medium'
-                  } hover:text-gray-950`}
+                      : ''
+                  }`}
                 >
                   Employees
-                </Link>
-              </span>
+                </span>
+              </Link>
             </li>
-            <li
-              className={`flex items-center cursor-pointer gap-4 text-sm p-2 rounded hover:bg-gray-100 ${
-                pathname === '/projects' ? 'bg-gray-100' : ''
-              }`}
-            >
-              <LuBriefcase
-                className={`text-base ${
-                  pathname === '/projects'
-                    ? 'font-bold text-color-black'
-                    : 'text-gray-600'
+
+            <li>
+              <Link
+                href="/projects"
+                className={`group flex items-center gap-4 text-sm p-2 rounded w-full cursor-pointer hover:bg-gray-100 ${
+                  pathname === '/projects' ? 'bg-gray-100' : ''
                 }`}
-              />
-              <span>
-                <Link
-                  href="/projects"
-                  className={`${
+              >
+                <LuBriefcase
+                  className={`text-base text-gray-600 group-hover:text-gray-800  ${
+                    pathname === '/projects' ? 'text-gray-800' : ''
+                  }`}
+                />
+                <span
+                  className={`text-color-black font-medium group-hover:text-gray-800 ${
                     pathname === '/projects'
                       ? 'text-gray-800 font-semibold'
-                      : 'text-color-black font-medium'
-                  } hover:text-gray-950`}
+                      : ''
+                  }`}
                 >
                   Projects
-                </Link>
-              </span>
+                </span>
+              </Link>
             </li>
-            <li
-              className={`flex items-center cursor-pointer gap-3 text-sm p-2 rounded hover:bg-gray-100 ${
-                pathname === '/employees/add' ? 'bg-gray-100' : ''
-              }`}
-            >
-              <MdAdd
-                className={`text-lg ${
-                  pathname === '/employees/add'
-                    ? 'font-bold text-color-black'
-                    : 'text-gray-600'
+
+            <li>
+              <Link
+                href="/employees/add"
+                className={`group flex items-center gap-4 text-sm p-2 rounded w-full cursor-pointer hover:bg-gray-100 ${
+                  pathname === '/employees/add' ? 'bg-gray-100' : ''
                 }`}
-              />
-              <span>
-                <Link
-                  href="/employees/add"
-                  className={`${
+              >
+                <MdAdd
+                  className={`text-base text-gray-600  group-hover:text-gray-800 ${
+                    pathname === '/employees/add' ? 'text-gray-800' : ''
+                  }`}
+                />
+                <span
+                  className={`text-color-black font-medium group-hover:text-gray-800 ${
                     pathname === '/employees/add'
                       ? 'text-gray-800 font-semibold'
-                      : 'text-color-black font-medium'
-                  } hover:text-gray-950`}
+                      : ''
+                  }`}
                 >
                   Add Employee
-                </Link>
-              </span>
+                </span>
+              </Link>
             </li>
-            <li
-              className={`flex items-center cursor-pointer gap-3 text-sm p-2 rounded hover:bg-gray-100 ${
-                pathname === '/projects/add' ? 'bg-gray-100' : ''
-              }`}
-            >
-              <MdAdd
-                className={`text-lg ${
-                  pathname === '/projects/add'
-                    ? 'font-bold text-color-black'
-                    : 'text-gray-600'
+
+            <li>
+              <Link
+                href="/projects/add"
+                className={`group flex items-center gap-4 text-sm p-2 rounded w-full cursor-pointer hover:bg-gray-100 ${
+                  pathname === '/projects/add' ? 'bg-gray-100' : ''
                 }`}
-              />
-              <span>
-                <Link
-                  href="/projects/add"
-                  className={`${
+              >
+                <MdAdd
+                  className={`text-base text-gray-600  group-hover:text-gray-800  ${
+                    pathname === '/projects/add' ? 'text-gray-800' : ''
+                  }`}
+                />
+                <span
+                  className={`text-color-black font-medium group-hover:text-gray-800 ${
                     pathname === '/projects/add'
                       ? 'text-gray-800 font-semibold'
-                      : 'text-color-black font-medium'
-                  } hover:text-gray-950`}
+                      : ''
+                  }`}
                 >
                   Add Project
-                </Link>
-              </span>
+                </span>
+              </Link>
             </li>
           </ul>
         </div>
