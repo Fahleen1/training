@@ -7,31 +7,37 @@ import {
   ListboxOption,
   ListboxOptions,
 } from '@headlessui/react';
-import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoCheckmarkOutline } from 'react-icons/io5';
 
-type Project = {
+type Option = {
   id: number;
   name: string;
 };
 
-const projects: Project[] = [
-  { id: 1, name: 'Project A' },
-  { id: 2, name: 'Project B' },
-];
+interface SelectProps {
+  label: string;
+  options: Option[];
+  selected: Option | null;
+  onChange: (value: Option) => void;
+  placeholder?: string;
+}
 
-export default function EmployeeSelect() {
-  const [selected, setSelected] = useState<Project | null>(null);
-
+export default function CustomSelect({
+  label,
+  options,
+  selected,
+  onChange,
+  placeholder,
+}: SelectProps) {
   return (
-    <Listbox value={selected} onChange={setSelected}>
-      <Label className=" text-sm/6 font-medium text-color-black">Project</Label>
+    <Listbox value={selected} onChange={onChange}>
+      <Label className=" text-sm/6 font-medium text-color-black">{label}</Label>
       <div className="relative">
         <ListboxButton className="grid w-full cursor-pointer grid-cols-1 rounded-md bg-white px-3 py-2 text-left text-gray-900 border border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2">
           <span className="col-start-1 row-start-1 flex items-center gap-3">
             <span className="block text-color-black font-medium text-sm">
-              {selected ? selected.name : 'Select a Project'}
+              {selected ? selected.name : placeholder}
             </span>
           </span>
 
@@ -39,19 +45,19 @@ export default function EmployeeSelect() {
         </ListboxButton>
 
         <ListboxOptions className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white p-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
-          {projects.map((project) => (
+          {options.map((option) => (
             <ListboxOption
-              key={project.id}
-              value={project}
+              key={option.id}
+              value={option}
               className="group relative cursor-default p-2 text-color-black font-medium data-[focus]:bg-gray-100 data-[focus]:outline-none"
             >
               <div className="flex items-center">
                 <span className="w-5 flex-shrink-0 flex items-center justify-center">
-                  {selected?.id === project.id && (
+                  {selected?.id === option.id && (
                     <IoCheckmarkOutline className="text-color-black font-bold" />
                   )}
                 </span>
-                <span className="block text-sm">{project.name}</span>
+                <span className="block text-sm">{option.name}</span>
               </div>
             </ListboxOption>
           ))}

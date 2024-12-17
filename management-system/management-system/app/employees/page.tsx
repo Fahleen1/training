@@ -1,10 +1,9 @@
 import MainHeading from '../components/main-heading';
+import Table from '../components/table';
+import { employeeColumns, employees } from '../constants';
 import Link from 'next/link';
-import React from 'react';
 
 import Button from '@/app/components/button';
-
-import EmployeeTable from './components/employee-table';
 
 export default function Employees() {
   return (
@@ -17,7 +16,7 @@ export default function Employees() {
           </Link>
         </div>
         <div className="flex items-center">
-          <EmployeeTable />
+          <Table data={employees} columns={employeeColumns} />
         </div>
       </div>
     </div>

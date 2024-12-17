@@ -1,12 +1,24 @@
 'use client';
 
-import ProjectSelect from '../components/project-select';
-import React from 'react';
+import { useState } from 'react';
 
 import Button from '@/app/components/button';
+import CustomSelect from '@/app/components/custom-select';
 import MainHeading from '@/app/components/main-heading';
 
+type Status = {
+  id: number;
+  name: string;
+};
+
+const status: Status[] = [
+  { id: 1, name: 'Not Started' },
+  { id: 2, name: 'In Progress' },
+  { id: 3, name: 'Completed' },
+];
+
 export default function Add() {
+  const [selectedStat, setSelectedStat] = useState<Status | null>(null);
   return (
     <div className="flex flex-col p-6 gap-5">
       <MainHeading name="Add New Project" />
@@ -26,7 +38,13 @@ export default function Add() {
           </div>
 
           <div className="flex flex-col">
-            <ProjectSelect />
+            <CustomSelect
+              label="Project"
+              options={status}
+              selected={selectedStat}
+              onChange={setSelectedStat}
+              placeholder="Select a Status"
+            />
           </div>
           <Button name="Add Project" />
         </form>

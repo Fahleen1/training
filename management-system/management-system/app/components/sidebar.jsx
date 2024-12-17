@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
 import { LuBriefcase } from 'react-icons/lu';
 import { LuUsers } from 'react-icons/lu';
 import { MdAdd } from 'react-icons/md';

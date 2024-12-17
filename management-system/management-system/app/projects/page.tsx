@@ -1,10 +1,9 @@
 import MainHeading from '../components/main-heading';
+import Table from '../components/table';
+import { projectColumns, projects } from '../constants';
 import Link from 'next/link';
-import React from 'react';
 
 import Button from '@/app/components/button';
-
-import ProjectTable from './components/project-table';
 
 export default function Projects() {
   return (
@@ -17,7 +16,7 @@ export default function Projects() {
           </Link>
         </div>
         <div className="flex items-center">
-          <ProjectTable />
+          <Table data={projects} columns={projectColumns} />
         </div>
       </div>
     </div>

@@ -1,6 +1,4 @@
-import React from 'react';
-
-export default function Buttongroup() {
+export default function ButtonGroup() {
   return (
     <div className="flex flex-row gap-2">
       <button className="bg-white font-semibold px-3 py-2 hover:bg-gray-100 rounded-md border border-gray-200">

@@ -1,12 +1,23 @@
 'use client';
 
-import EmployeeSelect from '../components/employee-select';
-import React from 'react';
+import { useState } from 'react';
 
 import Button from '@/app/components/button';
+import CustomSelect from '@/app/components/custom-select';
 import MainHeading from '@/app/components/main-heading';
 
+type Project = {
+  id: number;
+  name: string;
+};
+
+const projects: Project[] = [
+  { id: 1, name: 'Project A' },
+  { id: 2, name: 'Project B' },
+];
+
 export default function Add() {
+  const [selectedProj, setSelectedProj] = useState<Project | null>(null);
   return (
     <div className="flex flex-col p-6 gap-5">
       <MainHeading name="Add New Employee" />
@@ -37,7 +48,13 @@ export default function Add() {
             />
           </div>
           <div className="flex flex-col">
-            <EmployeeSelect />
+            <CustomSelect
+              label="Project"
+              options={projects}
+              selected={selectedProj}
+              onChange={setSelectedProj}
+              placeholder="Select a Project"
+            />
           </div>
           <Button name="Add Employee" />
         </form>
