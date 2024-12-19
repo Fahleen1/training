@@ -1,12 +1,24 @@
+'use client';
+
 import MainHeading from '../components/main-heading';
 import Table from '../components/table';
-import { projectColumns } from '../constants';
-import { projects } from '../data';
+import { Projects, projectColumns } from '../constants';
+import { createClient } from '../utils/supabase/client';
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 
 import Button from '@/app/components/button';
 
-export default function Projects() {
+export default function ProjectsData() {
+  const supabase = createClient();
+  const { data } = useQuery<Projects[]>({
+    queryFn: async () => {
+      const { data } = await supabase.from('projects').select('*');
+      return data as Projects[];
+    },
+    queryKey: ['projects'],
+  });
+
   return (
     <div>
       <div className="flex flex-col gap-4 p-4 ">
@@ -17,7 +29,7 @@ export default function Projects() {
           </Link>
         </div>
         <div className="flex items-center">
-          <Table data={projects} columns={projectColumns} />
+          <Table data={data ?? []} columns={projectColumns} />
         </div>
       </div>
     </div>

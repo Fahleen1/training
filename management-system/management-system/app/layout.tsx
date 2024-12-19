@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 
 import Sidebar from './components/sidebar';
 import './globals.css';
+import ReactQueryProvider from './utils/react-client-provider';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -31,7 +32,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased  flex  overflow-hidden`}
       >
         <Sidebar />
-        <main className="relative min-h-screen flex-1  p-8">{children}</main>
+        <ReactQueryProvider>
+          <main className="relative min-h-screen flex-1  p-8">{children}</main>
+        </ReactQueryProvider>
       </body>
     </html>
   );

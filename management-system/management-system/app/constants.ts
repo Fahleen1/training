@@ -4,13 +4,13 @@ import { IColumn } from './interface/interface';
 export type Projects = {
   name: string;
   status: string;
-  employees: number;
+  no_of_employees: number;
 };
 
 export const projectColumns: IColumn<Projects>[] = [
   { key: 'name', title: 'Name' },
   { key: 'status', title: 'Status' },
-  { key: 'employees', title: 'Employees' },
+  { key: 'no_of_employees', title: 'Employees' },
 ];
 
 //Employee interface
