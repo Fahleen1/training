@@ -2,6 +2,7 @@ import { IColumn } from './interface/interface';
 
 //Project interface
 export type Projects = {
+  id: string;
   name: string;
   status: string;
   no_of_employees: number;
@@ -17,7 +18,7 @@ export const projectColumns: IColumn<Projects>[] = [
 export type Employee = {
   name: string;
   position: string;
-  projects: string;
+  projects: string[];
 };
 
 export const employeeColumns: IColumn<Employee>[] = [
