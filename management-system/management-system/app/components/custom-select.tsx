@@ -11,7 +11,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { IoCheckmarkOutline } from 'react-icons/io5';
 
 type OptionProps = {
-  id: number;
+  id: string;
   name: string;
 };
 

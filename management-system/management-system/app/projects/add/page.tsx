@@ -1,34 +1,44 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import { FormEvent, useState } from 'react';
 
 import Button from '@/app/components/button';
 import CustomSelect from '@/app/components/custom-select';
 import MainHeading from '@/app/components/main-heading';
-import { NameProps } from '@/app/interface/interface';
+import { Status } from '@/app/constants';
 import { createClient } from '@/app/utils/supabase/client';
-
-const status: NameProps[] = [
-  { id: 1, name: 'Not Started' },
-  { id: 2, name: 'In Progress' },
-  { id: 3, name: 'Completed' },
-];
 
 const supabase = createClient();
 
 export default function Add() {
-  const [selectedStat, setSelectedStat] = useState<NameProps | null>(null);
+  const [selectedStatus, setSelectedStatus] = useState<Status | null>(null);
   const [name, setName] = useState<string>('');
+
+  const { data: options = [] } = useQuery<Status[]>({
+    queryKey: ['status'],
+    queryFn: async () => {
+      const { data, error } = await supabase.from('status').select('id, name');
+
+      if (error) {
+        console.error('Error fetching status options:', error);
+        throw new Error(error.message);
+      }
+
+      return data ?? [];
+    },
+  });
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!name && !selectedStat) {
+
+    if (!name || !selectedStatus) {
       return;
     }
 
     const { data } = await supabase
       .from('projects')
-      .insert([{ name: name, status: selectedStat?.name }])
+      .insert([{ name: name, status: selectedStatus?.id }])
       .select();
     return data;
   };
@@ -56,9 +66,9 @@ export default function Add() {
           <div className="flex flex-col">
             <CustomSelect
               label="Project"
-              options={status}
-              selected={selectedStat}
-              onChange={setSelectedStat}
+              options={options}
+              selected={selectedStatus}
+              onChange={setSelectedStatus}
               placeholder="Select a Status"
             />
           </div>

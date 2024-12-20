@@ -1,15 +1,15 @@
 'use client';
 
-import { IColumn } from '../interface/interface';
+import { TableProps } from '../interface/interface';
 
 import ButtonGroup from '@/app/components/button-group';
 
-type TableProps<T> = {
-  data: T[];
-  columns: IColumn<T>[];
-};
-
-export default function Table<T>({ data, columns }: TableProps<T>) {
+export default function Table<T extends { id: string }>({
+  onEdit,
+  onDelete,
+  data,
+  columns,
+}: TableProps<T>) {
   return (
     <div className="relative w-full overflow-x-auto">
       <table className="w-full text-sm text-left border-collapse table-fixed">
@@ -26,7 +26,6 @@ export default function Table<T>({ data, columns }: TableProps<T>) {
             <th className="w-3/12 px-4 py-3 text-left">Actions</th>
           </tr>
         </thead>
-
         <tbody>
           {data.map((row, rowIndex) => (
             <tr
@@ -44,7 +43,10 @@ export default function Table<T>({ data, columns }: TableProps<T>) {
                 </td>
               ))}
               <td className="w-3/12 p-4 font-medium text-color-black">
-                <ButtonGroup />
+                <ButtonGroup
+                  onEdit={() => onEdit(row.id)}
+                  onDelete={() => onDelete(row.id)}
+                />
               </td>
             </tr>
           ))}
